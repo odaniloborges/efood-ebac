@@ -5,7 +5,7 @@ import { cores } from '../../styles'
 
 export const ButtonContainer = styled.button`
   background-color: ${cores.vermelho};
-  color: ${cores.bege};
+  color: ${cores.branca};
   font-size: 12px;
   font-weight: bold;
   padding: 8px 16px;
