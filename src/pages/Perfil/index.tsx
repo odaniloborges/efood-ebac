@@ -1,63 +1,76 @@
+import { useParams } from 'react-router-dom'
+import { useEffect, useState } from 'react'
 import PratosList from '../../components/PratosList'
-import Pratos from '../../models/Prato'
 
-import marguerita from '../../assets/images/marguerita.png'
 import HeaderPerfil from '../../components/HeaderPerfil'
 import Banner from '../../components/Banner'
 
-const pratos: Pratos[] = [
-  {
-    id: 1,
-    description:
-      'A clássica Marguerita: molho de tomate suculento, mussarela derretida, manjericão fresco e um toque de azeite. Sabor e simplicidade!',
-    title: 'Pizza Marguerita',
-    image: marguerita
-  },
-  {
-    id: 2,
-    description:
-      'A clássica Marguerita: molho de tomate suculento, mussarela derretida, manjericão fresco e um toque de azeite. Sabor e simplicidade!',
-    title: 'Pizza Marguerita',
-    image: marguerita
-  },
-  {
-    id: 3,
-    description:
-      'A clássica Marguerita: molho de tomate suculento, mussarela derretida, manjericão fresco e um toque de azeite. Sabor e simplicidade!',
-    title: 'Pizza Marguerita',
-    image: marguerita
-  },
-  {
-    id: 4,
-    description:
-      'A clássica Marguerita: molho de tomate suculento, mussarela derretida, manjericão fresco e um toque de azeite. Sabor e simplicidade!',
-    title: 'Pizza Marguerita',
-    image: marguerita
-  },
-  {
-    id: 5,
-    description:
-      'A clássica Marguerita: molho de tomate suculento, mussarela derretida, manjericão fresco e um toque de azeite. Sabor e simplicidade!',
-    title: 'Pizza Marguerita',
-    image: marguerita
-  },
-  {
-    id: 6,
-    description:
-      'A clássica Marguerita: molho de tomate suculento, mussarela derretida, manjericão fresco e um toque de azeite. Sabor e simplicidade!',
-    title: 'Pizza Marguerita',
-    image: marguerita
-  }
-]
+export interface ModalItem {
+  type: 'image'
+  url: string
+}
 
-const Perfil = () => (
-  <>
-    <HeaderPerfil />
-    <Banner />
-    <div className="container">
-      <PratosList pratos={pratos} title="Pratos" />
-    </div>
-  </>
-)
+export interface PratoItem {
+  foto: string
+  preco: number
+  id: number
+  nome: string
+  descricao: string
+  porcao: string
+}
+
+export type Restaurante = {
+  id: number
+  titulo: string
+  destacado: boolean
+  tipo: string
+  avaliacao: number
+  descricao: string
+  capa: string
+  cardapio: PratoItem[]
+}
+
+const Perfil = () => {
+  const { id } = useParams()
+  const [restaurante, setRestaurante] = useState<Restaurante | null>(null)
+
+  useEffect(() => {
+    fetch(`https://api-ebac.vercel.app/api/efood/restaurantes/${id}`)
+      .then((res) => res.json())
+      .then((res) => setRestaurante(res))
+  }, [id])
+
+  if (!restaurante) {
+    return <h3>Carregando...</h3>
+  }
+
+  const getRestauranteTags = (restaurante: Restaurante) => {
+    const tags = []
+
+    if (restaurante.destacado === true) {
+      tags.push(`Destaque da semana`)
+    }
+
+    if (restaurante.tipo) {
+      tags.push(restaurante.tipo)
+    }
+
+    return tags
+  }
+
+  return (
+    <>
+      <HeaderPerfil />
+      <Banner
+        titulo={restaurante.titulo}
+        infos={getRestauranteTags(restaurante)}
+        imagem={restaurante.capa}
+      />
+      <div className="container">
+        <PratosList restaurante={restaurante} />
+      </div>
+    </>
+  )
+}
 
 export default Perfil
