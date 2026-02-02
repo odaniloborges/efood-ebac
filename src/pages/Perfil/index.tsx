@@ -44,20 +44,6 @@ const Perfil = () => {
     return <h3>Carregando...</h3>
   }
 
-  const getRestauranteTags = (restaurante: Restaurante) => {
-    const tags = []
-
-    if (restaurante.destacado === true) {
-      tags.push(`Destaque da semana`)
-    }
-
-    if (restaurante.tipo) {
-      tags.push(restaurante.tipo)
-    }
-
-    return tags
-  }
-
   return (
     <>
       <HeaderPerfil />
