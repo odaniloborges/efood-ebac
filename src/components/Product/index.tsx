@@ -31,6 +31,7 @@ const Product = ({ title, rating, description, infos, image, id }: Props) => (
       <Button
         type="link"
         to={`/perfil/${id}`}
+        variant="primary"
         title="Clique aqui para aproveitar esta oferta"
       >
         Saiba mais

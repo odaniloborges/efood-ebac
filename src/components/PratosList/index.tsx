@@ -1,4 +1,4 @@
-import { Restaurante } from '../../pages/Perfil'
+import { Restaurante } from '../../pages/Home'
 import Prato from '../Prato'
 
 import { Container, List } from './styles'

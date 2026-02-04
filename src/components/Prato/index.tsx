@@ -1,13 +1,9 @@
 import { useState } from 'react'
-import {
-  Card,
-  Descricao,
-  Titulo,
-  Infos,
-  Modal,
-  ModalContent,
-  ButtonPrato
-} from './styles'
+import Button from '../Button'
+import { Card, Descricao, Titulo, Infos, Modal, ModalContent } from './styles'
+import { useDispatch } from 'react-redux'
+import { add, open } from '../../store/reducers/cart'
+import { Prato as PratoType } from '../../pages/Home'
 
 type Props = {
   id: number
@@ -19,7 +15,37 @@ type Props = {
   isVisible?: boolean
 }
 
-const Prato = ({ titulo, descricao, imagem, porcao, preco }: Props) => {
+export const formatarPreco = (valor?: number) => {
+  if (!valor) return '0,00'
+  return valor.toLocaleString('pt-BR', {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2
+  })
+}
+
+const Prato = ({ id, titulo, descricao, imagem, porcao, preco }: Props) => {
+  const dispatch = useDispatch()
+  const addCart = () => {
+    const item: PratoType = {
+      foto: imagem,
+      preco: preco || 0,
+      id: id,
+      nome: titulo,
+      descricao: descricao,
+      porcao: porcao || ''
+    }
+
+    dispatch(add(item))
+    dispatch(open())
+  }
+
+  const getDescricao = (descricao: string) => {
+    if (descricao.length > 260) {
+      return descricao.slice(0, 260) + '...'
+    }
+    return descricao
+  }
+
   const [modal, setModal] = useState<{ isVisible: boolean }>({
     isVisible: false
   })
@@ -27,14 +53,6 @@ const Prato = ({ titulo, descricao, imagem, porcao, preco }: Props) => {
   const closeModal = () => {
     setModal({
       isVisible: false
-    })
-  }
-
-  const formatarPreco = (valor?: number) => {
-    if (!valor) return '0,00'
-    return valor.toLocaleString('pt-BR', {
-      minimumFractionDigits: 2,
-      maximumFractionDigits: 2
     })
   }
 
@@ -46,8 +64,11 @@ const Prato = ({ titulo, descricao, imagem, porcao, preco }: Props) => {
           <Infos>
             <Titulo>{titulo}</Titulo>
           </Infos>
-          <Descricao>{descricao}</Descricao>
-          <ButtonPrato
+          <Descricao>{getDescricao(descricao)}</Descricao>
+          <Button
+            type="button"
+            title="Abrindo o modal"
+            variant="secondary"
             onClick={() => {
               setModal({
                 isVisible: true
@@ -55,7 +76,7 @@ const Prato = ({ titulo, descricao, imagem, porcao, preco }: Props) => {
             }}
           >
             Mais detalhes
-          </ButtonPrato>
+          </Button>
         </div>
       </Card>
       <Modal className={modal.isVisible ? 'visivel' : ''}>
@@ -66,15 +87,14 @@ const Prato = ({ titulo, descricao, imagem, porcao, preco }: Props) => {
               <h3>{titulo}</h3>
               <Descricao>{descricao}</Descricao>
               <p>{`Serve de ${porcao}`}</p>
-              <ButtonPrato
-                onClick={() => {
-                  setModal({
-                    isVisible: true
-                  })
-                }}
+              <Button
+                type="button"
+                title="Adicionando prato ao carrinho"
+                variant="secondary"
+                onClick={addCart}
               >
                 {`Adicionar ao carrinho - R$ ${formatarPreco(preco)}`}
-              </ButtonPrato>
+              </Button>
             </Infos>
           </div>
         </ModalContent>

@@ -19,6 +19,10 @@ export const Card = styled.div`
     margin: 6px;
     padding-top: 6px;
   }
+
+  button {
+    width: 100%;
+  }
 `
 
 export const Titulo = styled.h3`
@@ -129,19 +133,4 @@ export const ModalContent = styled.div`
     display: block;
     margin-top: 16px;
   }
-`
-
-export const ButtonPrato = styled.button`
-  background-color: ${cores.bege};
-  color: ${cores.vermelho};
-  font-size: 12px;
-  font-weight: bold;
-  border: none;
-  width: 100%;
-  padding: 8px 16px;
-  margin-bottom: 16px;
-  text-align: center;
-  margin-top: 16px;
-  text-decoration: none;
-  display: inline-block;
 `

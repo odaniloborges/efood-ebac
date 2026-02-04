@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { Props } from '.'
 import { cores } from '../../styles'
 
-export const Container = styled.section<Omit<Props, 'restaurantes'>>`
+export const Container = styled.section<Omit<Props, 'restaurante'>>`
   padding: 32px 0;
   background-color: ${cores.bege};
 `

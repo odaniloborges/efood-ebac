@@ -4,10 +4,10 @@ import Product from '../Product'
 import { Container, List } from './styles'
 
 export type Props = {
-  restaurantes: Restaurante[]
+  restaurante: Restaurante[]
 }
 
-const ProductsList = ({ restaurantes }: Props) => {
+const ProductsList = ({ restaurante }: Props) => {
   const getRestauranteTags = (restaurante: Restaurante) => {
     const tags = []
 
@@ -26,7 +26,7 @@ const ProductsList = ({ restaurantes }: Props) => {
     <Container>
       <div className="container">
         <List>
-          {restaurantes.map((restaurante) => (
+          {restaurante.map((restaurante) => (
             <li key={restaurante.id}>
               <Product
                 id={restaurante.id}

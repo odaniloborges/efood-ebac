@@ -36,4 +36,5 @@ export const LinkCart = styled.a`
   font-size: 18px;
   font-weight: bold;
   text-decoration: none;
+  cursor: pointer;
 `
