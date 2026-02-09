@@ -1,9 +1,12 @@
 import { useState } from 'react'
-import Button from '../Button'
-import { Card, Descricao, Titulo, Infos, Modal, ModalContent } from './styles'
 import { useDispatch } from 'react-redux'
-import { add, open } from '../../store/reducers/cart'
-import { Prato as PratoType } from '../../pages/Home'
+
+import Button from '../Button'
+
+import { add, openCart } from '../../store/reducers/cart'
+
+import * as S from './styles'
+import { formatarPreco } from '../../utils'
 
 type Props = {
   id: number
@@ -15,18 +18,10 @@ type Props = {
   isVisible?: boolean
 }
 
-export const formatarPreco = (valor?: number) => {
-  if (!valor) return '0,00'
-  return valor.toLocaleString('pt-BR', {
-    minimumFractionDigits: 2,
-    maximumFractionDigits: 2
-  })
-}
-
 const Prato = ({ id, titulo, descricao, imagem, porcao, preco }: Props) => {
   const dispatch = useDispatch()
   const addCart = () => {
-    const item: PratoType = {
+    const item: Prato = {
       foto: imagem,
       preco: preco || 0,
       id: id,
@@ -36,14 +31,15 @@ const Prato = ({ id, titulo, descricao, imagem, porcao, preco }: Props) => {
     }
 
     dispatch(add(item))
-    dispatch(open())
+    dispatch(openCart())
+    closeModal()
   }
 
-  const getDescricao = (descricao: string) => {
-    if (descricao.length > 260) {
-      return descricao.slice(0, 260) + '...'
+  const getDescricao = (text: string) => {
+    if (text.length > 260) {
+      return text.slice(0, 260) + '...'
     }
-    return descricao
+    return text
   }
 
   const [modal, setModal] = useState<{ isVisible: boolean }>({
@@ -58,13 +54,13 @@ const Prato = ({ id, titulo, descricao, imagem, porcao, preco }: Props) => {
 
   return (
     <>
-      <Card>
+      <S.Card>
         <img src={imagem} alt={titulo} />
         <div className="container">
-          <Infos>
-            <Titulo>{titulo}</Titulo>
-          </Infos>
-          <Descricao>{getDescricao(descricao)}</Descricao>
+          <S.Infos>
+            <S.Titulo>{titulo}</S.Titulo>
+          </S.Infos>
+          <S.Descricao>{getDescricao(descricao)}</S.Descricao>
           <Button
             type="button"
             title="Abrindo o modal"
@@ -78,14 +74,14 @@ const Prato = ({ id, titulo, descricao, imagem, porcao, preco }: Props) => {
             Mais detalhes
           </Button>
         </div>
-      </Card>
-      <Modal className={modal.isVisible ? 'visivel' : ''}>
-        <ModalContent className="container">
+      </S.Card>
+      <S.Modal className={modal.isVisible ? 'visivel' : ''}>
+        <S.ModalContent className="container">
           <img src={imagem} alt={titulo} />
           <div className="container">
-            <Infos>
+            <S.Infos>
               <h3>{titulo}</h3>
-              <Descricao>{descricao}</Descricao>
+              <S.Descricao>{descricao}</S.Descricao>
               <p>{`Serve de ${porcao}`}</p>
               <Button
                 type="button"
@@ -95,16 +91,16 @@ const Prato = ({ id, titulo, descricao, imagem, porcao, preco }: Props) => {
               >
                 {`Adicionar ao carrinho - R$ ${formatarPreco(preco)}`}
               </Button>
-            </Infos>
+            </S.Infos>
           </div>
-        </ModalContent>
+        </S.ModalContent>
         <div
           onClick={() => {
             closeModal()
           }}
           className="overlay"
         ></div>
-      </Modal>
+      </S.Modal>
     </>
   )
 }

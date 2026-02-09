@@ -1,5 +1,5 @@
 import Button from '../Button'
-import { Card, Descricao, Titulo, Infos, Tag, Categoria, Nota } from './styles'
+import * as S from './styles'
 
 import estrela from '../../assets/images/estrela.png'
 
@@ -13,21 +13,21 @@ type Props = {
 }
 
 const Product = ({ title, rating, description, infos, image, id }: Props) => (
-  <Card to={`/perfil/${id}`}>
+  <S.Card to={`/perfil/${id}`}>
     <img src={image} alt={title} />
-    <Categoria>
+    <S.Categoria>
       {infos.map((info) => (
-        <Tag key={info}>{info}</Tag>
+        <S.Tag key={info}>{info}</S.Tag>
       ))}
-    </Categoria>
+    </S.Categoria>
     <div className="container">
-      <Infos>
-        <Titulo>{title}</Titulo>
-        <Nota>
+      <S.Infos>
+        <S.Titulo>{title}</S.Titulo>
+        <S.Nota>
           {rating} <img src={estrela} alt="estrela" />
-        </Nota>
-      </Infos>
-      <Descricao>{description}</Descricao>
+        </S.Nota>
+      </S.Infos>
+      <S.Descricao>{description}</S.Descricao>
       <Button
         type="link"
         to={`/perfil/${id}`}
@@ -37,7 +37,7 @@ const Product = ({ title, rating, description, infos, image, id }: Props) => (
         Saiba mais
       </Button>
     </div>
-  </Card>
+  </S.Card>
 )
 
 export default Product

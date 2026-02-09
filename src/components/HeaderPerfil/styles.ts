@@ -31,7 +31,7 @@ export const Titulo = styled.h2`
   text-align: center;
 `
 
-export const LinkCart = styled.a`
+export const LinkCart = styled.span`
   color: ${cores.vermelho};
   font-size: 18px;
   font-weight: bold;

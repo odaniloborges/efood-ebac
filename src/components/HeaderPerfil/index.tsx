@@ -1,31 +1,31 @@
-import { HeaderBar, ImagemFundo, LinkCart, Titulo } from './styles'
+import * as S from './styles'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootReducer } from '../../store'
 
 import logo from '../../assets/images/logo.svg'
 import imagemFundo from '../../assets/images/Vector.png'
-import { open } from '../../store/reducers/cart'
+import { openCart } from '../../store/reducers/cart'
 
 const HeaderPerfil = () => {
   const dispatch = useDispatch()
   const { items } = useSelector((state: RootReducer) => state.cart)
 
-  const openCart = () => {
-    dispatch(open())
+  const open = () => {
+    dispatch(openCart())
   }
 
   return (
-    <HeaderBar>
-      <ImagemFundo style={{ backgroundImage: `url(${imagemFundo})` }}>
+    <S.HeaderBar>
+      <S.ImagemFundo style={{ backgroundImage: `url(${imagemFundo})` }}>
         <div className="container">
-          <Titulo>Restaurantes</Titulo>
+          <S.Titulo>Restaurantes</S.Titulo>
           <img src={logo} alt="Efood" />
-          <LinkCart onClick={openCart}>
+          <S.LinkCart role="button" onClick={open}>
             {items.length} - produto(s) no carrinho
-          </LinkCart>
+          </S.LinkCart>
         </div>
-      </ImagemFundo>
-    </HeaderBar>
+      </S.ImagemFundo>
+    </S.HeaderBar>
   )
 }
 

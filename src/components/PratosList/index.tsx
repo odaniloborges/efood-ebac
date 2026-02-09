@@ -1,7 +1,6 @@
-import { Restaurante } from '../../pages/Home'
 import Prato from '../Prato'
 
-import { Container, List } from './styles'
+import * as S from './styles'
 
 export type Props = {
   restaurante: Restaurante
@@ -9,9 +8,9 @@ export type Props = {
 
 const PratosList = ({ restaurante }: Props) => {
   return (
-    <Container>
+    <S.Container>
       <div className="container">
-        <List>
+        <S.List>
           {restaurante.cardapio.map((item) => (
             <li key={item.id}>
               <Prato
@@ -24,9 +23,9 @@ const PratosList = ({ restaurante }: Props) => {
               />
             </li>
           ))}
-        </List>
+        </S.List>
       </div>
-    </Container>
+    </S.Container>
   )
 }
 
