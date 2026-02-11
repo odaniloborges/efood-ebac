@@ -1,46 +1,98 @@
-# Getting Started with Create React App
+# 🍔 EFOOD - Plataforma de Entrega de Comida
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+![Status](https://img.shields.io/badge/status-completed-brightgreen?style=flat-square)
+![License](https://img.shields.io/badge/license-MIT-blue?style=flat-square)
+![Version](https://img.shields.io/badge/version-1.0.0-blue?style=flat-square)
+![React](https://img.shields.io/badge/React-18.0+-61dafb?style=flat-square&logo=react)
+![TypeScript](https://img.shields.io/badge/TypeScript-5.0+-3178c6?style=flat-square&logo=typescript)
 
-## Available Scripts
+## 🌐 Live Demo
 
-In the project directory, you can run:
+👉 projeto em produção: [EFOOD](https://efood-demo.vercel.app)
+
+---
+
+## 📋 Descrição
+
+**EFOOD** é uma plataforma moderna de e-commerce especializada na entrega de alimentos. O projeto foi desenvolvido com foco em oferecer uma experiência de usuário intuitiva, responsiva e performática, combinando as melhores práticas de desenvolvimento frontend com uma arquitetura escalável.
+
+### ✨ Funcionalidades Principais
+
+- 🍽️ **Catálogo Dinâmico**: Visualização completa de restaurantes e pratos com filtros avançados
+- 🛒 **Carrinho de Compras**: Gerenciamento intuitivo de itens com cálculo automático de totais e descontos
+- 💳 **Processo de Checkout**: Fluxo seguro e simplificado para finalizar pedidos
+- 🏪 **Categorização**: Organização de produtos por tipo de culinária, preço e popularidade
+- 📱 **Design Responsivo**: Interface adaptável para todos os dispositivos (mobile, tablet, desktop)
+- ⚡ **Performance Otimizada**: Carregamento rápido e experiência fluida com otimizações de bundle
+- 🎯 **Busca Inteligente**: Localização rápida de restaurantes e pratos específicos
+
+### 🛠️ Implementação Técnica
+
+#### React & TypeScript
+Utilização de componentes funcionais com hooks para criar uma arquitetura escalável e mantível. TypeScript garante segurança de tipos, reduz erros em tempo de desenvolvimento e melhora a autocompletar do editor.
+
+#### State Management
+Gerenciamento de estado global para controlar carrinho de compras, filtros, favoritos e autenticação de forma eficiente e centralizada.
+
+#### Styled Components & Responsividade
+Estilização dinâmica com CSS-in-JS para componentes isolados e reutilizáveis. Media queries garantem perfeita adaptação em diferentes resoluções de tela.
+
+#### API Integration
+Integração com backend para consumo de dados de restaurantes, pratos e processamento de pedidos em tempo real.
+
+---
+
+## 📸 Visualização do Projeto
+
+### Página Inicial
+![Página Inicial](https://github.com/odaniloborges/efood/blob/main/src/assets/screenshots/home.png)
+
+### Catálogo de Restaurantes
+![Catálogo](https://github.com/odaniloborges/efood/blob/main/src/assets/screenshots/catalog.png
+
+### Carrinho de Compras
+![Carrinho](https://github.com/odaniloborges/efood/blob/main/src/assets/screenshots/cart.png)
+
+---
+
+## 🚀 Tecnologias Utilizadas
+
+- 📝 **Linguagens**: TypeScript, HTML5, CSS3, Ja
+- 🔧 **Tecnologias**: React, React Router DOM, Styled Components, Furmik, Yup, Redux (Gerenciamento de Estado)
+- 🛠️ **Ferramentas**: Create React App, npm, Git, ESLint, Prettier, Vercel (Deploy)
+- 📚 **Metodologias**: Component-Based Architecture, Clean Code, BEM (Block Element Modifier)
+
+
+## 📦 Scripts Disponíveis
 
 ### `npm start`
+Inicia o servidor de desenvolvimento na porta 3000.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```bash
+npm start
+```
 
 ### `npm run build`
+Cria uma build otimizada para produção.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```bash
+npm run build
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## 👤 Autor - Danilo Borges
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Desenvolvedor Full Stack apaixonado por criar experiências digitais incríveis.
 
-### `npm run eject`
+- **LinkedIn**: [https://www.linkedin.com/in/odaniloborges](https://www.linkedin.com/in/odaniloborges/)
+- **GitHub**: [https://github.com/odaniloborges](https://github.com/odaniloborges)
+- **Email**: daniloborges.dev@gmail.com
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+---
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## 📄 Licença
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+---
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+**⭐ Se este projeto foi útil para você, não esqueça de dar uma estrela!**
